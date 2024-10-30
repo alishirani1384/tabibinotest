@@ -9,7 +9,7 @@ export default function Home() {
     { value: "مرد", label: "مرد" },
     { value: "زن", label: "زن" },
   ];
-  const [specs, setSpecs] = useState([
+  const [specs] = useState([
     { grad: "پزشکی", uni: "دانشگاه صنعتی", year: "1401" },
   ]);
   const [showForm, setShowForm] = useState(false);
