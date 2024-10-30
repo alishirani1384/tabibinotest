@@ -1,101 +1,133 @@
-import Image from "next/image";
+"use client";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import Input from "./components/Input";
+import { useState } from "react";
+import { AiOutlineDelete } from "react-icons/ai";
 
 export default function Home() {
+  const options = [
+    { value: "مرد", label: "مرد" },
+    { value: "زن", label: "زن" },
+  ];
+  const [specs, setSpecs] = useState([
+    { grad: "پزشکی", uni: "دانشگاه صنعتی", year: "1401" },
+  ]);
+  const [showForm, setShowForm] = useState(false);
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className="flex flex-col gap-4 p-4">
+      <div className="grid grid-cols-2 gap-4">
+        <Input
+          label="نام (اختیاری)"
+          placeHolder="شهر خود را انتخاب کنید"
+          supportText="متن پشتیبانی"
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <Input
+          label="نام خانوادگی (اختیاری)"
+          placeHolder="شهر خود را انتخاب کنید"
+          supportText="متن پشتیبانی"
+        />
+        <Input
+          label="کد ملی (اختیاری)"
+          checkboxText="اتباع خارجی هستم"
+          placeHolder="جهت دریافت نوبت وارد کردن کد ملی ضروری است"
+          supportText="متن پشتیبانی"
+        />
+        <Input
+          type="tel"
+          label="شماره موبایل"
+          placeHolder="0912 345 6789"
+          supportText="متن پشتیبانی"
+          isRequired
+        />
+        <Input
+          type="date"
+          label="تاریخ تولد (اختیاری)"
+          supportText="متن پشتیبانی"
+          placeHolder="1365/06/29"
+        />
+        <Input
+          label="شماره نظام پزشکی"
+          supportText="متن پشتیبانی"
+          placeHolder="شماره نظام پزشکی خود را انتخاب کنید"
+        />
+        <Input
+          type="select"
+          options={options}
+          label="جنسیت"
+          placeHolder="جنسیت خود را انتخاب کنید"
+          supportText="متن پشتیبانی"
+        />
+      </div>
+      <hr />
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between">
+          <h1>تخصص ها</h1>{" "}
+          <button
+            onClick={() => setShowForm(true)}
+            className="border-2 flex flex-row-reverse items-center gap-3 border-blue-400 text-blue-400 rounded-lg px-4 py-2"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            افزودن <IoIosAddCircleOutline size={25} />
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        {showForm && (
+          <div className="grid grid-cols-2 gap-4 p-8 bg-slate-100 rounded-lg">
+            <div className="col-span-2 w-1/2">
+              <Input
+                label="دکترای عمومی"
+                supportText="متن پشتیبانی"
+                placeHolder="نوع دکترا"
+              />
+            </div>
+            <Input
+              label="دانشگاه (اختیاری)"
+              supportText="متن پشتیبانی"
+              placeHolder="نام دانشگاه"
+            />
+            <Input
+              label="سال فارغ التحصیلی (اختیاری)"
+              type="tel"
+              supportText="متن پشتیبانی"
+              placeHolder="سال فارغ التحصیلی"
+            />
+          </div>
+        )}
+        {specs.map((spec, index) => (
+          <div className="flex gap-3 w-full p-8 bg-slate-100 rounded-lg" key={index}>
+            <div 
+              className="flex-1 grid grid-cols-2 gap-4"
+            >
+              <div className="col-span-2 w-1/2">
+                <Input
+                  label="دکترای عمومی"
+                  supportText="متن پشتیبانی"
+                  placeHolder="نوع دکترا"
+                  nvalue={spec.grad}
+                />
+              </div>
+              <Input
+                label="دانشگاه (اختیاری)"
+                supportText="متن پشتیبانی"
+                placeHolder="نام دانشگاه"
+                nvalue={spec.uni}
+              />
+              <Input
+                label="سال فارغ التحصیلی (اختیاری)"
+                type="tel"
+                supportText="متن پشتیبانی"
+                placeHolder="سال فارغ التحصیلی"
+                nvalue={spec.year}
+              />
+            </div>
+            <div className="block min-w-[1px] min-h-full bg-gray-500 rounded-full"></div>
+            <button
+            onClick={() => setShowForm(true)}
+            className="border-2 flex flex-row-reverse items-center gap-3 border-red-600 text-red-600 rounded-lg px-4 py-2 mt-auto"
+          >
+            حذف <AiOutlineDelete size={25} />
+          </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
